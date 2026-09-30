@@ -39,7 +39,7 @@ All `LabEvent` nodes carry `flag = 'abnormal'`; normal results were not loaded. 
 ---
 
 ## Fig. 2 — Retrieval pipeline
-`lucid_pipeline.png`
+`figure_pipeline (2).png`
 
 ![Retrieval pipeline](figure_pipeline (2).png)
 
