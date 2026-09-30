@@ -563,13 +563,61 @@ Full captions are in `figures/README.md`. Neo4j Browser exports of the schema an
 
 ---
 
-## 7. What is next
+## 7. What has been measured
 
-- **Path B — narrative retrieval.** Discharge summaries embedded and searched by vector similarity. MIMIC-IV-Note is not in the demo release; PhysioNet credentialing is granted, so this is now buildable on the credentialed release. PhysioNet's guidance permits processing credentialed data through providers that do not retain prompts, train on them, or apply routine human review, and names Anthropic among them, so the pipeline runs unchanged.
-- **The routing experiment.** Routing against MediGRAF's context concatenation, scored on the simple and medium query tiers, over a cohort stratified by admission count — single-admission patients as a control where no longitudinal structure exists to exploit, multi-admission patients as the treatment arm.
-- **Text2Cypher accuracy.** A held-out set of clinical questions with gold Cypher, to measure generation accuracy and establish the fallback rate that motivates Path B.
+The three items listed here as future work have been done. Full tables, the
+failure analysis and the limitations are in **`results.md`**; this is the
+summary.
 
-Everything demonstrated in this document uses the open demo release. Credentialed data is for evaluation only, and no record from it appears in this repository.
+**Text2Cypher accuracy.** 44 questions in five tiers with reference Cypher
+(`evaluation.py`), five runs at temperature 0. Under projection scoring —
+extra columns permitted — 100% on simple, 91.7% on medium, 86.0% on hard.
+Under strict scoring, where the returned value multiset must match exactly,
+the same outputs score 91.7%, 25.0% and 38.0%. The 67-point medium-tier gap
+has zero range under both criteria, so it is a scoring choice rather than
+sampling noise, and it makes comparison with published figures that do not
+state a criterion impossible.
+
+Two failures reproduce in every run. `CONTAINS 'remission'` also matches
+*"not having achieved remission"*, so a query asking which admissions record
+remission returns all 20 instead of 2 — valid Cypher, plausible reading,
+silently wrong, and catchable only by reading the query. And `datetime()`
+applied to `admittime` throws, because the schema prompt does not say the
+property is a string in `'YYYY-MM-DD HH:MM:SS'` form. Documenting the type
+fixes the second completely and breaks unrelated questions, including the
+negation one; the ablation is in `results.md` §3.5.
+
+**Path B — narrative retrieval.** 243 discharge summaries covering all 100
+patients and 243 of 275 admissions (88%; the remainder are observation stays,
+which generate no discharge summary), retrieved through PhysioNet's BigQuery
+access and chunked to 3,035 passages. Embeddings are computed locally, so
+credentialed note text never leaves the execution environment.
+
+**The routing experiment — null.** Routing and context concatenation reached
+identical mean value recall over 32 structural questions (0.744 each).
+Re-running the routing arm unchanged differed from itself by 0.244 per
+question against 0.098 between arms, so the difference between architectures
+is smaller than the synthesis step's own variance. No effect of context
+composition is detectable at this sample size, and none is claimed.
+
+What routing is defended on instead is auditability: the generated Cypher is
+returned alongside the answer, and a clinician can read it and confirm it
+asked the right question. The remission failure is the case that makes the
+argument concrete.
+
+### Still open
+
+- A router figure from questions written by someone who has not seen the
+  router's prompt. The 44/44 reported here is a sanity check, not accuracy.
+- A temperature-0 replication of the routing comparison, which ran at default
+  temperature.
+- A clinical-domain embedding model and a reranking step. In the worked
+  example the passage that answers the question ranks third, behind two
+  topically adjacent but unresponsive paragraphs.
+
+Everything demonstrated in this document uses the open demo release for the
+graph. Credentialed note data is used for retrieval only, and no record from
+it appears in this repository.
 
 ## Reproducing this
 
