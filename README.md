@@ -23,8 +23,6 @@ MIMIC-IV Clinical Database Demo v2.2, openly licensed (ODC-BY 1.0) — no creden
 | `evaluation.py` | 44-question bank with reference queries, and the dual-criterion scoring harness |
 | `experiment.py` | Routing versus context concatenation, scored by value recall |
 | `queries.cypher` | The six presentation queries, in order, with notes |
-| `neo4j_favourites_foldered.csv` | Bulk import of those queries into Neo4j Browser's Favorites |
-| `neo4j_favourites.csv` | Same, without the folder |
 | `pathb.py` | Loads the note index and defines `search()` |
 | `pathb_eval.py` | Retrieval evaluation for Path B (optional) |
 | `notebooks/01_build_graph.ipynb` | Builds the graph from the demo release. Run this first. |
