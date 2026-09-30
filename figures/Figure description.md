@@ -41,7 +41,7 @@ All `LabEvent` nodes carry `flag = 'abnormal'`; normal results were not loaded. 
 ## Fig. 2 — Retrieval pipeline
 `lucid_pipeline.png`
 
-![Retrieval pipeline](lucid_pipeline.png)
+![Retrieval pipeline](figure_pipeline (2).png)
 
 > **Fig. 2.** Routed retrieval architecture. A classifier assigns each question to one of two paths before any query is generated. Structural questions (*what, when, how many, in what order*) are translated to Cypher, validated as read-only, and executed against the graph; interpretive questions (*why, what was considered, what was ruled out*) are routed to dense retrieval over clinical notes. Routing precedes generation because Text2Cypher does not refuse: given an unanswerable question it emits syntactically valid Cypher returning related-but-irrelevant rows, from which a fluent and unfounded answer is readily synthesised. A secondary fallback (3b) covers structural queries that legitimately return nothing. The executed Cypher is returned alongside the answer, so the retrieval step is auditable.
 
