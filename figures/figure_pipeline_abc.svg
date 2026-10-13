@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1660 1540" width="1660" height="1540" font-family="Helvetica, Arial, sans-serif">
+<rect width="1660" height="1540" fill="#ffffff"/>
+<defs>
+<marker id="aInk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 z" fill="#1B2733"/></marker>
+<marker id="aCrim" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 z" fill="#A8395C"/></marker>
+<marker id="aAmb" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,1 L9,5 L0,9 z" fill="#B7701A"/></marker>
+</defs>
+<rect x="530" y="36" width="600" height="66" rx="33" fill="#EEF2F5" stroke="#D3DCE3" stroke-width="1.4"/>
+<text x="830" y="78" font-size="25" fill="#1B2733" font-weight="normal" text-anchor="middle" font-style="normal" >Clinical question, in English</text>
+<path d="M 830,102 L 830,154" fill="none" stroke="#1B2733" stroke-width="1.8"  marker-end="url(#aInk)"/>
+<rect x="560" y="156" width="540" height="96" rx="6" fill="#fff" stroke="#1B2733" stroke-width="1.8"/>
+<text x="830" y="192" font-size="22" fill="#1B2733" font-weight="bold" text-anchor="middle" font-style="normal" >0 · Router</text>
+<text x="830" y="224" font-size="20" fill="#5A6B7B" font-weight="normal" text-anchor="middle" font-style="normal" >structural, or interpretive?</text>
+<rect x="600" y="320" width="460" height="58" rx="4" fill="#F2FAFB" stroke="#DCE9EC" stroke-width="1.4"/>
+<text x="830" y="358" font-size="23" fill="#0E6E7C" font-weight="bold" text-anchor="middle" font-style="normal" >PATH A — STRUCTURED</text>
+<rect x="1150" y="320" width="460" height="58" rx="4" fill="#FDF4F7" stroke="#EEDCE3" stroke-width="1.4"/>
+<text x="1380" y="358" font-size="23" fill="#A8395C" font-weight="bold" text-anchor="middle" font-style="normal" >PATH B — NARRATIVE</text>
+<rect x="50" y="320" width="460" height="58" rx="4" fill="#FFF8EE" stroke="#F0DDBF" stroke-width="1.4"/>
+<text x="280" y="358" font-size="23" fill="#B7701A" font-weight="bold" text-anchor="middle" font-style="normal" >PATH C — ARROWS SCHEMA</text>
+<text x="280" y="300" font-size="17" fill="#B7701A" font-weight="normal" text-anchor="middle" font-style="italic" >authored once, offline — not routed per question</text>
+<path d="M 830,252 L 830,316" fill="none" stroke="#1B2733" stroke-width="1.8"  marker-end="url(#aInk)"/>
+<path d="M 1100,204 L 1380,204 L 1380,316" fill="none" stroke="#A8395C" stroke-width="1.8" stroke-dasharray="9 7" marker-end="url(#aCrim)"/>
+<rect x="30" y="430" width="500" height="700" rx="18" fill="#FFF8EE" stroke="#F0DDBF" stroke-width="1.4"/>
+<rect x="580" y="430" width="500" height="700" rx="18" fill="#F2FAFB" stroke="#DCE9EC" stroke-width="1.4"/>
+<rect x="1130" y="430" width="500" height="700" rx="18" fill="#FDF4F7" stroke="#EEDCE3" stroke-width="1.4"/>
+<path d="M 830,378 L 830,468" fill="none" stroke="#1B2733" stroke-width="1.8"  marker-end="url(#aInk)"/>
+<path d="M 1380,378 L 1380,468" fill="none" stroke="#A8395C" stroke-width="1.8" stroke-dasharray="9 7" marker-end="url(#aCrim)"/>
+<rect x="60" y="470" width="440" height="124" rx="6" fill="#fff" stroke="#B7701A" stroke-width="1.8"/>
+<text x="280" y="506" font-size="22" fill="#1B2733" font-weight="bold" text-anchor="middle" font-style="normal" >1 · Draw in Arrows</text>
+<text x="280" y="538" font-size="19" fill="#5A6B7B" font-weight="normal" text-anchor="middle" font-style="normal" >nodes · labels · typed properties</text>
+<text x="280" y="564" font-size="18" fill="#5A6B7B" font-weight="normal" text-anchor="middle" font-style="normal" >relationship types · arrows.app, no code</text>
+<path d="M 280,594 L 280,604" fill="none" stroke="#B7701A" stroke-width="1.8"  marker-end="url(#aAmb)"/>
+<rect x="60" y="606" width="440" height="118" rx="6" fill="#fff" stroke="#B7701A" stroke-width="1.8"/>
+<text x="280" y="642" font-size="22" fill="#1B2733" font-weight="bold" text-anchor="middle" font-style="normal" >2 · Export</text>
+<text x="280" y="674" font-size="19" fill="#1B2733" font-weight="normal" text-anchor="middle" font-style="normal" >JSON — tested</text>
+<text x="280" y="700" font-size="18" fill="#5A6B7B" font-weight="normal" text-anchor="middle" font-style="normal" >Cypher — optional, not tested</text>
+<path d="M 280,724 L 280,758" fill="none" stroke="#B7701A" stroke-width="1.8"  marker-end="url(#aAmb)"/>
+<rect x="60" y="760" width="440" height="130" rx="6" fill="#fff" stroke="#B7701A" stroke-width="1.8"/>
+<text x="280" y="796" font-size="22" fill="#1B2733" font-weight="bold" text-anchor="middle" font-style="normal" >3 · Convert + validate</text>
+<text x="280" y="828" font-size="19" fill="#5A6B7B" font-weight="normal" text-anchor="middle" font-style="normal" >from_arrows(): export → schema text</text>
+<text x="280" y="854" font-size="19" fill="#5A6B7B" font-weight="normal" text-anchor="middle" font-style="normal" >validate(): drawing vs the live graph</text>
+<text x="280" y="878" font-size="16" fill="#B7701A" font-weight="normal" text-anchor="middle" font-style="normal" >types preserved, nothing hand-typed</text>
+<rect x="60" y="930" width="440" height="170" rx="6" fill="#fff" stroke="#F0DDBF" stroke-width="1.4"/>
+<text x="86" y="968" font-size="21" fill="#1B2733" font-weight="bold" text-anchor="start" font-style="normal" >WHAT PATH C TESTS</text>
+<text x="86" y="1002" font-size="17" fill="#5A6B7B" font-weight="normal" text-anchor="start" font-style="normal" >Does a schema drawn in Arrows and exported</text>
+<text x="86" y="1028" font-size="17" fill="#5A6B7B" font-weight="normal" text-anchor="start" font-style="normal" >work as well as a hand-written one?</text>
+<text x="86" y="1054" font-size="17" fill="#5A6B7B" font-weight="normal" text-anchor="start" font-style="normal" >Same Text2Cypher, validator, Neo4j and</text>
+<text x="86" y="1080" font-size="17" fill="#5A6B7B" font-weight="normal" text-anchor="start" font-style="normal" >34 questions. Only the schema's source differs.</text>
+<path d="M 500,825 L 555,825 L 555,520 L 606,520" fill="none" stroke="#B7701A" stroke-width="1.8"  marker-end="url(#aAmb)"/>
+<text x="545" y="672" font-size="15" fill="#B7701A" font-weight="bold" text-anchor="middle" font-style="italic" transform="rotate(-90 545 672)">schema text</text>
+<rect x="610" y="470" width="440" height="124" rx="6" fill="#fff" stroke="#0E6E7C" stroke-width="1.8"/>
+<text x="830" y="506" font-size="22" fill="#1B2733" font-weight="bold" text-anchor="middle" font-style="normal" >1 · Text2Cypher</text>
+<text x="830" y="538" font-size="19" fill="#5A6B7B" font-weight="normal" text-anchor="middle" font-style="normal" >schema + question → Cypher</text>
+<text x="830" y="570" font-size="17" fill="#B7701A" font-weight="bold" text-anchor="middle" font-style="normal" >schema: hand-written (A) or Arrows (C)</text>
+<rect x="610" y="606" width="440" height="118" rx="6" fill="#fff" stroke="#0E6E7C" stroke-width="1.8"/>
+<text x="830" y="642" font-size="22" fill="#1B2733" font-weight="bold" text-anchor="middle" font-style="normal" >2 · Validator</text>
+<text x="830" y="674" font-size="18" fill="#5A6B7B" font-weight="normal" text-anchor="middle" font-style="normal" >rejects CREATE · MERGE · SET · DELETE</text>
+<text x="830" y="700" font-size="18" fill="#5A6B7B" font-weight="normal" text-anchor="middle" font-style="normal" >read-only · LIMIT enforced</text>
+<rect x="610" y="760" width="440" height="330" rx="6" fill="#fff" stroke="#0E6E7C" stroke-width="1.8"/>
+<text x="830" y="796" font-size="22" fill="#1B2733" font-weight="bold" text-anchor="middle" font-style="normal" >3 · Neo4j</text>
+<text x="830" y="828" font-size="19" fill="#5A6B7B" font-weight="normal" text-anchor="middle" font-style="normal" >33,980 nodes · 45,226 relationships</text>
+<text x="830" y="852" font-size="16" fill="#B7701A" font-weight="normal" text-anchor="middle" font-style="normal" >DKA cohort: 51,013 nodes · 126,396 rels</text>
+<g stroke="#1B2733" stroke-width="1.6" fill="none">
+<path d="M730,975 L802,941" marker-end="url(#aInk)"/>
+<path d="M730,975 L802,1009" marker-end="url(#aInk)"/>
+<path d="M825,930 L913,906" marker-end="url(#aInk)"/>
+<path d="M825,930 L912,947" marker-end="url(#aInk)"/>
+<path d="M825,1020 L912,1003" marker-end="url(#aInk)"/>
+<path d="M825,1020 L912,1037" marker-end="url(#aInk)"/>
+</g>
+<circle cx="718" cy="975" r="30" fill="#3E5F8A"/><text x="718" y="981" font-size="12" fill="#ffffff" font-weight="normal" text-anchor="middle" font-style="normal" >Patient</text>
+<circle cx="825" cy="930" r="19" fill="#0E6E7C"/>
+<circle cx="825" cy="1020" r="19" fill="#0E6E7C"/>
+<circle cx="942" cy="897" r="17" fill="#A8395C"/>
+<circle cx="942" cy="953" r="17" fill="#D08A2E"/>
+<circle cx="942" cy="996" r="17" fill="#A8395C"/>
+<circle cx="942" cy="1046" r="17" fill="#4E8B4A"/>
+<rect x="1160" y="470" width="440" height="148" rx="6" fill="#fff" stroke="#A8395C" stroke-width="1.8"/>
+<text x="1380" y="506" font-size="22" fill="#1B2733" font-weight="bold" text-anchor="middle" font-style="normal" >B · Note retrieval</text>
+<text x="1380" y="538" font-size="19" fill="#5A6B7B" font-weight="normal" text-anchor="middle" font-style="normal" >dense vector search over</text>
+<text x="1380" y="564" font-size="19" fill="#5A6B7B" font-weight="normal" text-anchor="middle" font-style="normal" >discharge summaries</text>
+<text x="1380" y="596" font-size="16" fill="#A8395C" font-weight="normal" text-anchor="middle" font-style="normal" >243 summaries · 3,035 passages · local 384d</text>
+<path d="M 1380,618 L 1380,644" fill="none" stroke="#A8395C" stroke-width="1.8" stroke-dasharray="9 7" marker-end="url(#aCrim)"/>
+<rect x="1160" y="648" width="440" height="86" rx="6" fill="#ffffff" stroke="#EEDCE3" stroke-width="1.4"/>
+<text x="1380" y="682" font-size="19" fill="#5A6B7B" font-weight="normal" text-anchor="middle" font-style="normal" >no node or property holds</text>
+<text x="1380" y="708" font-size="19" fill="#5A6B7B" font-weight="normal" text-anchor="middle" font-style="normal" >clinical reasoning</text>
+<rect x="1160" y="764" width="440" height="300" rx="6" fill="#ffffff" stroke="#EEDCE3" stroke-width="1.4"/>
+<text x="1190" y="802" font-size="21" fill="#1B2733" font-weight="bold" text-anchor="start" font-style="normal" >WHY ROUTE FIRST</text>
+<text x="1190" y="846" font-size="19" fill="#5A6B7B" font-weight="normal" text-anchor="start" font-style="normal" >Text2Cypher does not refuse. Given</text>
+<text x="1190" y="878" font-size="19" fill="#5A6B7B" font-weight="normal" text-anchor="start" font-style="normal" >“why was therapy changed?” it emits</text>
+<text x="1190" y="910" font-size="19" fill="#5A6B7B" font-weight="normal" text-anchor="start" font-style="normal" >plausible Cypher and returns related-</text>
+<text x="1190" y="942" font-size="19" fill="#5A6B7B" font-weight="normal" text-anchor="start" font-style="normal" >but-irrelevant rows, which read as an</text>
+<text x="1190" y="974" font-size="19" fill="#5A6B7B" font-weight="normal" text-anchor="start" font-style="normal" >answer. Routing happens before any</text>
+<text x="1190" y="1006" font-size="19" fill="#5A6B7B" font-weight="normal" text-anchor="start" font-style="normal" >query is generated.</text>
+<path d="M 1050,1010 L 1105,1010 L 1105,544 L 1156,544" fill="none" stroke="#1B2733" stroke-width="1.8" stroke-dasharray="9 7" marker-end="url(#aInk)"/>
+<text x="1093" y="780" font-size="15" fill="#1B2733" font-weight="bold" text-anchor="middle" font-style="italic" transform="rotate(-90 1093 780)">3b · if no rows returned</text>
+<rect x="560" y="1210" width="540" height="104" rx="6" fill="#fff" stroke="#1B2733" stroke-width="1.8"/>
+<text x="830" y="1248" font-size="22" fill="#1B2733" font-weight="bold" text-anchor="middle" font-style="normal" >4 · Answer synthesis</text>
+<text x="830" y="1282" font-size="19" fill="#5A6B7B" font-weight="normal" text-anchor="middle" font-style="normal" >grounded in retrieved rows only</text>
+<path d="M 830,1130 L 830,1206" fill="none" stroke="#1B2733" stroke-width="1.8"  marker-end="url(#aInk)"/>
+<text x="846" y="1176" font-size="19" fill="#1B2733" font-weight="bold" text-anchor="start" font-style="italic" >exact rows</text>
+<path d="M 1380,1064 L 1380,1160 L 1000,1160 L 1000,1206" fill="none" stroke="#A8395C" stroke-width="1.8" stroke-dasharray="9 7" marker-end="url(#aCrim)"/>
+<path d="M 830,1314 L 830,1394" fill="none" stroke="#1B2733" stroke-width="1.8"  marker-end="url(#aInk)"/>
+<rect x="480" y="1396" width="700" height="70" rx="35" fill="#EEF2F5" stroke="#D3DCE3" stroke-width="1.4"/>
+<text x="830" y="1440" font-size="24" fill="#1B2733" font-weight="normal" text-anchor="middle" font-style="normal" >Answer + the executed Cypher, for audit</text>
+</svg>
