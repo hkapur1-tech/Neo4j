@@ -1,0 +1,194 @@
+{
+  "style": {},
+  "nodes": [
+    {
+      "id": "n0",
+      "position": {
+        "x": -200,
+        "y": 0
+      },
+      "caption": "",
+      "labels": [
+        "Admission"
+      ],
+      "properties": {
+        "admission_location": "str",
+        "admission_type": "str",
+        "admittime": "datetime",
+        "discharge_location": "str",
+        "dischtime": "datetime",
+        "hadm_id": "int",
+        "is_dka": "bool"
+      },
+      "style": {}
+    },
+    {
+      "id": "n1",
+      "position": {
+        "x": 200,
+        "y": -110
+      },
+      "caption": "",
+      "labels": [
+        "Diagnosis"
+      ],
+      "properties": {
+        "code": "str",
+        "icd_code": "str",
+        "icd_version": "int",
+        "long_title": "str"
+      },
+      "style": {}
+    },
+    {
+      "id": "n2",
+      "position": {
+        "x": 200,
+        "y": -320
+      },
+      "caption": "",
+      "labels": [
+        "ICUStay"
+      ],
+      "properties": {
+        "first_careunit": "str",
+        "intime": "datetime",
+        "los": "float",
+        "outtime": "datetime",
+        "stay_id": "int"
+      },
+      "style": {}
+    },
+    {
+      "id": "n3",
+      "position": {
+        "x": 560,
+        "y": 0
+      },
+      "caption": "",
+      "labels": [
+        "LabEvent"
+      ],
+      "properties": {
+        "charttime": "datetime",
+        "flag": "str",
+        "fluid": "str",
+        "itemid": "int",
+        "label": "str",
+        "labevent_id": "int",
+        "valuenum": "float",
+        "valueuom": "str"
+      },
+      "style": {}
+    },
+    {
+      "id": "n4",
+      "position": {
+        "x": 200,
+        "y": 320
+      },
+      "caption": "",
+      "labels": [
+        "Medication"
+      ],
+      "properties": {
+        "drug": "str"
+      },
+      "style": {}
+    },
+    {
+      "id": "n5",
+      "position": {
+        "x": -600,
+        "y": 0
+      },
+      "caption": "",
+      "labels": [
+        "Patient"
+      ],
+      "properties": {
+        "anchor_age": "int",
+        "gender": "str",
+        "subject_id": "int"
+      },
+      "style": {}
+    },
+    {
+      "id": "n6",
+      "position": {
+        "x": 200,
+        "y": 110
+      },
+      "caption": "",
+      "labels": [
+        "Procedure"
+      ],
+      "properties": {
+        "code": "str",
+        "icd_code": "str",
+        "icd_version": "int",
+        "long_title": "str"
+      },
+      "style": {}
+    }
+  ],
+  "relationships": [
+    {
+      "id": "r0",
+      "type": "HAS_ADMISSION",
+      "fromId": "n5",
+      "toId": "n0",
+      "properties": {},
+      "style": {}
+    },
+    {
+      "id": "r1",
+      "type": "HAS_ICU_STAY",
+      "fromId": "n0",
+      "toId": "n2",
+      "properties": {},
+      "style": {}
+    },
+    {
+      "id": "r2",
+      "type": "HAS_DIAGNOSIS",
+      "fromId": "n0",
+      "toId": "n1",
+      "properties": {
+        "seq_num": "int"
+      },
+      "style": {}
+    },
+    {
+      "id": "r3",
+      "type": "HAS_PROCEDURE",
+      "fromId": "n0",
+      "toId": "n6",
+      "properties": {
+        "chartdate": "date",
+        "seq_num": "int"
+      },
+      "style": {}
+    },
+    {
+      "id": "r4",
+      "type": "PRESCRIBED",
+      "fromId": "n0",
+      "toId": "n4",
+      "properties": {
+        "n_orders": "int",
+        "route": "str",
+        "starttime": "datetime"
+      },
+      "style": {}
+    },
+    {
+      "id": "r5",
+      "type": "HAS_LAB_EVENT",
+      "fromId": "n0",
+      "toId": "n3",
+      "properties": {},
+      "style": {}
+    }
+  ]
+}
