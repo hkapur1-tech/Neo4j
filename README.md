@@ -29,7 +29,11 @@ MIMIC-IV Clinical Database Demo v2.2, openly licensed (ODC-BY 1.0) — no creden
 | `pathb_eval.py` | Retrieval evaluation for Path B (optional) |
 | `notebooks/01_build_graph.ipynb` | Builds the graph from the demo release. Run this first. |
 | `notebooks/02_pipeline_and_evaluation.ipynb` | Path A, Path B, the evaluation and the experiment |
-| `figures/` | The three paper figures, with captions and the schema table |
+| `notebooks/03_dka_path_c.ipynb` | DKA cohort and Path C: Arrows-authored schema vs hand-written (needs credentialed MIMIC-IV) |
+| `dka_build.py` | Loads the DKA cohort from MIMIC-IV v3.1 into Neo4j; holds the hand-written DKA schema |
+| `arrows.py` | Arrows round trip: `introspect`, `to_arrows`, `from_arrows`, `validate` |
+| `dka_questions.py` | 34-question DKA bank and the scoring harness for the three schema arms |
+| `figures/` | Paper figures with captions; `figure_pipeline_abc.svg` shows Paths A, B and C together |
 
 ## Where each thing is documented
 
@@ -127,7 +131,19 @@ fix for one of them is shown to cost more than it gains.
 MIMIC-IV-Note is credentialed; access here is through PhysioNet's BigQuery
 route, scoped to the demo cohort.
 
-**Everything in this repository uses the open demo release only.** No
-credentialed MIMIC-IV data, and no output derived from it, is committed here.
+**The graph, Path A and Path B results use the open demo release only.** The
+DKA / Path C work (`results.md` §9) was run on the credentialed MIMIC-IV v3.1
+release; the repository holds only its code, schema text and aggregate scores.
+No credentialed record, identifier or patient-level value is committed.
 Saved run files contain question ids, generated Cypher and scores — no patient
 data.
+
+### Path C — schema authored in Arrows
+
+Dr. Sabah's third path: a person draws the schema in Neo4j Arrows, it is
+exported as JSON, converted to prompt text and given to the Text2Cypher step.
+On a 34-question DKA bank the Arrows-derived schema scored 93.1 % against 91.2 %
+for the hand-written one — no accuracy lost, no gain claimed. See `results.md`
+§9 for the design, the caveats (question bank revised twice after results were
+seen; the Arrows file was regenerated after the original was lost) and the
+per-question differences.

@@ -10,7 +10,10 @@ rather than quietly replaced.
 Everything in this document derives from the **MIMIC-IV Clinical Database Demo
 v2.2** (ODC-BY 1.0, open) for the graph, and from **MIMIC-IV-Note v2.2**
 (credentialed) for the note corpus. No credentialed record or derived output is
-committed to this repository.
+committed to this repository. **Section 9 (the DKA cohort) is the exception in
+provenance, not in policy:** it was built from the credentialed MIMIC-IV v3.1
+release, and only code, schema text and aggregate scores appear here — no
+patient-level record, identifier or lab value.
 
 ---
 
@@ -507,3 +510,91 @@ Credentials are entered at runtime and never written to disk or committed.
 Saved run files (`run_*.json`, `evaluation_results.json`,
 `experiment_results.json`) contain question ids, generated Cypher and scores —
 no patient data.
+
+---
+
+## 9. DKA cohort and Path C — a schema authored in Arrows
+
+**Question.** Does a schema drawn in Neo4j Arrows, exported as JSON and
+converted to prompt text, answer clinical questions as well as a hand-written
+one? *Path C* is this Arrows-derived schema; *Path A* is the hand-written
+schema; *Path C+* is the Arrows schema plus four lines of prose notes (cohort
+definition, lab scoping, `seq_num` semantics, label/fluid ambiguity).
+
+**Cohort.** Diabetic ketoacidosis, from MIMIC-IV v3.1 (credentialed). 96
+patients with three or more DKA admissions, 1,979 admissions in total, 552 of
+them DKA admissions (`is_dka = true`). Principal diagnosis (`seq_num = 1`),
+ICD-9 `2501%` / `2491%` or ICD-10 `E08–E13.1x`. The graph has 51,013 nodes and
+126,396 relationships. Labs are loaded only for DKA admissions; 34 of those
+have no panel lab.
+
+**Design.** One pipeline, three schema texts. The Text2Cypher prompt, the
+read-only validator, the graph, the model (`claude-opus-5`) and the question
+bank are identical across arms; only the schema string differs. The Arrows
+drawing is validated against the live graph by `arrows.validate()` and reads
+clean. 34 questions (simple 8, medium 8, hard 8, DKA-specific 6, adversarial 4),
+three runs each, scored under the projection criterion of §3.3 (the strict
+criterion is uninformative here because the model aliases its output columns).
+
+| Arm | Projection score |
+|---|---:|
+| Path A — hand-written | 91.2 % (93 / 102) |
+| Path C — Arrows JSON | 93.1 % (95 / 102) |
+| Path C+ — Arrows JSON + notes | 91.2 % (93 / 102) |
+
+**What this supports.** A schema authored in Arrows and exported as JSON is a
+drop-in replacement for the hand-written one: no accuracy was lost. The
+2-trial lead of Path C over Path A is inside run-to-run noise and is not
+claimed as an effect. Prose notes did not help.
+
+**Per-question view.** 28 of the 34 questions score identically in all three
+arms. Six differ — D03, H01, H08, M07, M08, X03 — in both directions, and the
+totals nearly cancel. Scores on those are often 0 or 100 across the three
+runs, which means the model reads a given question consistently and **changes
+its reading when only the wording of the schema changes**. The arms are equal
+in aggregate but not interchangeable question by question.
+
+**Failures worth reporting.**
+
+- **X03** — the model filters `Diagnosis` on `code` instead of `icd_code`. The
+  node carries both properties and no schema version says what they mean.
+  Properties without semantics cause errors a diagram cannot prevent.
+- **H08** — the model takes `duration.between(a, b).seconds`, which is only the
+  seconds component and omits whole days; it understates length of stay. A
+  model error unrelated to the schema; it fails in every arm.
+- **D03** — one arm matched lab labels with `CONTAINS 'bicarbonate'` where the
+  reference uses the exact label. The query is defensible; the schema carries
+  no value hints.
+
+**Limitations specific to this section.**
+
+- *The question bank was revised twice after results were seen.* A first pass
+  scored 76–77 % and 7 questions failed in every arm. Inspection showed bank
+  defects, not model failures: a reference that sorted nulls first (H03); a
+  reference returning two columns for a one-number question (M04); reference
+  queries that truncated durations to whole days where the question permitted
+  fractional days (H08, D01); an undefined readmission interval (D06);
+  unrounded percentages (X02); an ambiguous null filter (D03). Those were fixed
+  in the bank and the questions reworded to have one reading. Separately, M02
+  ("prescribed most often") was ambiguous between admissions and total orders
+  and was reworded to "in the most DKA admissions". The first-pass numbers are
+  discarded. Both revisions were made by reading failures, so the final bank is
+  not independent of the experiment.
+- *The effective sample is 34 questions*, not 102: the three runs of a question
+  are not independent.
+- *The Arrows file was regenerated.* The originally exported drawing was lost
+  with a Colab runtime and a change of machine. The file used here was
+  regenerated from the schema (`introspect` → `to_arrows` → arrows.app → export)
+  and validated against the live graph. The schema content is the same as the
+  original drawing, which had validated clean; the layout is not the original.
+- *JSON only.* Arrows can also export Cypher. That export carries the same
+  schema information but was not tested; its different formatting could change
+  individual answers, as the per-question view shows.
+- *No clinician reviewed the question bank*, as in §7.
+- *One model.* All arms ran on `claude-opus-5`; nothing here says whether the
+  result holds for a smaller model.
+
+**Reproducing.** `notebooks/03_dka_path_c.ipynb`, with `dka_build.py`,
+`arrows.py` and `dka_questions.py`. It needs PhysioNet-credentialed access to
+MIMIC-IV on BigQuery. Keys and credentials are entered at runtime; the notebook
+is committed with outputs cleared.
